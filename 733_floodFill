@@ -1,0 +1,52 @@
+/**
+ * @param {number[][]} image
+ * @param {number} sr
+ * @param {number} sc
+ * @param {number} color
+ * @return {number[][]}
+ */
+var floodFill = function(image, sr, sc, color) {
+let oColor = image[sr][sc] 
+
+function fill(image, currRow, currCol, color){
+
+       if (image[currRow][currCol] == oColor ){
+           image[currRow][currCol] = color;
+
+            //left
+            if (currCol > 0 ){
+                fill(image, currRow, currCol-1, color)
+            }
+
+            //right 
+            if (currCol < image[currRow].length-1 ){
+                fill(image, currRow, currCol+1, color)
+            }
+
+            //up 
+            if (currRow > 0){
+                fill(image, currRow-1, currCol, color) 
+            }
+
+            //down
+            if (currRow < image.length-1){
+                fill(image, currRow+1, currCol, color)
+            }
+
+       } 
+
+
+    }
+
+if (oColor != color){
+    fill(image, sr, sc, color)
+    return image 
+}
+ 
+else {
+    return image
+} 
+        
+};
+
+
